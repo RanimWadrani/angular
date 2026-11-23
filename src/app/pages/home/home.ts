@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Conference } from '../../model/conference';
 
 @Component({
   selector: 'app-home',
@@ -6,21 +7,32 @@ import { Component } from '@angular/core';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home { 
-//attributes
-title :string;
-stat:boolean = false;
-//constructors
-constructor(){
-  this.title = "HOME PAGE";
-  this.stat = false; 
-}
-//methods
-change(): void {
-  this.title = "WELCOME";
-  this.stat = true;
-}
-ngOnInit(): void {
-  console.log("home page loaded");
-}
-}
+export class Home {
+  list: Conference[] = [];
+
+  constructor() {}
+
+  ngOnInit() {
+    this.list = [
+      {
+        title: 'Conference 1',
+        description: 'Description for Conference 1',
+        date: '2024-07-01',
+        nbrMax: 5,
+        nbrReservation: 1,
+        picture: 'assets/conf1.jpg',
+      },
+      {
+        title: 'Conference 2',
+        description: 'Description for Conference 2',
+        date: '2024-08-15',
+        nbrMax: 10,
+        nbrReservation: 5,
+        picture: 'assets/conf2.jpg',
+      },
+    ];
+  }
+  participate(conf: Conference) {
+      conf.nbrReservation++;
+    
+}}
