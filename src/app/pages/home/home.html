@@ -1,31 +1,40 @@
-<table class="table">
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Date</th>
-    <th>Max</th>
-    <th>Reservations</th>
-    <th>Picture</th>
-  </tr>
-  </thead>
-  <tbody>
-    @for (confe of list; track $index) {
-      <tr>
-        <td>{{ confe.title }}</td>
-        <td>{{ confe.description }}</td>
-        <td>{{ confe.date }}</td>
-        <td>{{ confe.nbrMax - confe.nbrReservation }}</td>
-        <td>{{ confe.nbrReservation }}</td>
-        <td>
-         <button class="btn btn-small btn-success"[disabled]="confe.nbrMax==confe.nbrReservation"
+<input type="text" name="search"
+       class="form-control"
+       placeholder="search by title" [(ngModel)]="searchTitle">
+<h1>
+  {{ searchTitle }}
+</h1>
 
-           (click)="participate(confe)">
-           participate
-         </button>
-
-        </td>
-      </tr>
+<div class="events-grid">
+  @for (confe of list; track $index) {
+    @if (confe.title.toLowerCase().includes(searchTitle.toLowerCase())) {
+      <ul class="list-group event-card">
+        <li class="list-group-item event-picture">
+          <img [src]="confe.picture" [alt]="confe.title">
+        </li>
+        <li class="list-group-item event-title">{{ confe.title | uppercase }}</li>
+        <li class="list-group-item event-info">
+          <i class="bi bi-card-text"></i> <span>{{ confe.description }}</span>
+        </li>
+        <li class="list-group-item event-info">
+          <i class="bi bi-calendar-event"></i> <span>{{ confe.date }}</span>
+        </li>
+        <li class="list-group-item event-info">
+          <i class="bi bi-people"></i>
+          <span>{{ confe.nbrMax - confe.nbrReservation }} places restantes</span>
+        </li>
+        <li class="list-group-item event-info">
+          <i class="bi bi-bookmark-check"></i>
+          <span>{{ confe.nbrReservation }} réservations</span>
+        </li>
+        <li class="list-group-item">
+          <button class="btn btn-small btn-success"
+                  [disabled]="confe.nbrMax==confe.nbrReservation"
+                  (click)="participate(confe)">
+            participate
+          </button>
+        </li>
+      </ul>
     }
-  </tbody>
-</table>
+  }
+</div>

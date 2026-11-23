@@ -1,18 +1,40 @@
-<!-- Dans le <head> : Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<input type="text" name="search"
+       class="form-control"
+       placeholder="search by title" [(ngModel)]="searchTitle">
+<h1>
+  {{ searchTitle }}
+</h1>
 
-<ul class="list-group event-card">
-  <li class="list-group-item event-picture">
-    <img src="image.jpg" alt="Image de l'événement">
-  </li>
-  <li class="list-group-item event-title">Title</li>
-  <li class="list-group-item event-info">
-    <i class="bi bi-calendar-event"></i> <span>Date</span>
-  </li>
-  <li class="list-group-item event-info">
-    <i class="bi bi-geo-alt"></i> <span>Adress</span>
-  </li>
-  <li class="list-group-item event-info">
-    <i class="bi bi-people"></i> <span>Places</span>
-  </li>
-</ul>
+<div class="events-grid">
+  @for (confe of list; track $index) {
+    @if (confe.title.toLowerCase().includes(searchTitle.toLowerCase())) {
+      <ul class="list-group event-card">
+        <li class="list-group-item event-picture">
+          <img [src]="confe.picture" [alt]="confe.title">
+        </li>
+        <li class="list-group-item event-title">{{ confe.title | uppercase }}</li>
+        <li class="list-group-item event-info">
+          <i class="bi bi-card-text"></i> <span>{{ confe.description }}</span>
+        </li>
+        <li class="list-group-item event-info">
+          <i class="bi bi-calendar-event"></i> <span>{{ confe.date }}</span>
+        </li>
+        <li class="list-group-item event-info">
+          <i class="bi bi-people"></i>
+          <span>{{ confe.nbrMax - confe.nbrReservation }} places restantes</span>
+        </li>
+        <li class="list-group-item event-info">
+          <i class="bi bi-bookmark-check"></i>
+          <span>{{ confe.nbrReservation }} réservations</span>
+        </li>
+        <li class="list-group-item">
+          <button class="btn btn-small btn-success"
+                  [disabled]="confe.nbrMax==confe.nbrReservation"
+                  (click)="participate(confe)">
+            participate
+          </button>
+        </li>
+      </ul>
+    }
+  }
+</div>

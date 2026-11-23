@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { UpperCasePipe } from '@angular/common';
 import { Conference } from '../../model/conference';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [FormsModule, UpperCasePipe],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -20,7 +22,7 @@ export class Home {
         date: '2024-07-01',
         nbrMax: 5,
         nbrReservation: 1,
-        picture: 'assets/conf1.jpg',
+        picture: 'https://picsum.photos/400/250?1',
       },
       {
         title: 'Conference 2',
@@ -28,11 +30,14 @@ export class Home {
         date: '2024-08-15',
         nbrMax: 10,
         nbrReservation: 5,
-        picture: 'assets/conf2.jpg',
+        picture: 'https://picsum.photos/400/250?2',
       },
     ];
   }
+
+  searchTitle: string = '';
+
   participate(conf: Conference) {
-      conf.nbrReservation++;
-    
-}}
+    conf.nbrReservation++;
+  }
+}
