@@ -1,0 +1,59 @@
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 24px;
+}
+
+.event-card {
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+}
+
+.event-title {
+  padding: 20px 25px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a2340;
+  background: #f8f9fd;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+.event-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 25px;
+  color: #555;
+  border-left: none;
+  border-right: none;
+}
+
+.event-info i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: #e8efff;
+  color: #3d6bff;
+  font-size: 1.1rem;
+}
+
+.event-card .list-group-item:last-child {
+  border-bottom: none;
+  padding-bottom: 22px;
+}

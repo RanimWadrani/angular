@@ -1,0 +1,13 @@
+<div class="events-grid">
+  @for (person of list; track person.Name) {
+    <ul class="list-group event-card">
+      <li class="list-group-item event-title">{{ person.Name | uppercase }}</li>
+      <li class="list-group-item event-info">
+        <i class="bi bi-person"></i> <span>{{ person.Age }} ans</span>
+      </li>
+      <li class="list-group-item event-info">
+        <i class="bi bi-calendar-event"></i> <span>{{ person.date }}</span>
+      </li>
+    </ul>
+  } 
+</div>

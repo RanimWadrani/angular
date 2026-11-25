@@ -4,10 +4,11 @@ import { Footer } from './shearedcomponent/footer/footer';
 import { Header } from './shearedcomponent/header/header';
 import { Home } from './pages/home/home';
 import { List } from './pages/list/list';
+import { User } from './pages/user/user';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header , Home ,Footer,List],
+  imports: [RouterOutlet, Header , Home ,Footer, User,List],
   
   templateUrl: './app.html',
   styleUrl: './app.css'
